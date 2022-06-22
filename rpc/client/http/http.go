@@ -17,6 +17,8 @@ import (
 	ctypes "github.com/tendermint/tendermint/rpc/core/types"
 	jsonrpcclient "github.com/tendermint/tendermint/rpc/jsonrpc/client"
 	"github.com/tendermint/tendermint/types"
+
+	//stdlog "log"
 )
 
 /*
@@ -276,6 +278,7 @@ func (c *baseRPCClient) broadcastTX(
 	route string,
 	tx types.Tx,
 ) (*ctypes.ResultBroadcastTx, error) {
+
 	result := new(ctypes.ResultBroadcastTx)
 	_, err := c.caller.Call(ctx, route, map[string]interface{}{"tx": tx}, result)
 	if err != nil {

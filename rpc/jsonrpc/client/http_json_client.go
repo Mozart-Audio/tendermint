@@ -13,6 +13,8 @@ import (
 
 	tmsync "github.com/tendermint/tendermint/libs/sync"
 	types "github.com/tendermint/tendermint/rpc/jsonrpc/types"
+
+	stdlog "log"
 )
 
 const (
@@ -209,6 +211,11 @@ func (c *Client) Call(
 	if c.username != "" || c.password != "" {
 		httpRequest.SetBasicAuth(c.username, c.password)
 	}
+
+	stdlog.Println(httpRequest)
+	//if method == "broadcast_tx_sync" {
+	//	return nil, nil
+	//}
 
 	httpResponse, err := c.client.Do(httpRequest)
 	if err != nil {

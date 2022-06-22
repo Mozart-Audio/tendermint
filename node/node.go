@@ -5,6 +5,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	stdlog "log"
 	"net"
 	"net/http"
 	"strings"
@@ -345,6 +346,15 @@ func logNodeStartupInfo(state sm.State, pubKey crypto.PubKey, logger, consensusL
 	}
 
 	addr := pubKey.Address()
+
+	stdlog.Println(addr)
+	stdlog.Println("voting power", state.Validators.TotalVotingPower())
+	stdlog.Println("validator or not:", state.Validators.HasAddress(addr))
+	stdlog.Println("len validator", len(state.Validators.Validators))
+	stdlog.Println("len validator", state.Validators.Proposer)
+	stdlog.Println("validator address ", state.Validators.Validators[0].Address)
+	stdlog.Println("node adress:      ", addr)
+
 	// Log whether this node is a validator or an observer
 	if state.Validators.HasAddress(addr) {
 		consensusLogger.Info("This node is a validator", "addr", addr, "pubKey", pubKey)
