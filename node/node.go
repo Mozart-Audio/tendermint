@@ -347,13 +347,12 @@ func logNodeStartupInfo(state sm.State, pubKey crypto.PubKey, logger, consensusL
 
 	addr := pubKey.Address()
 
-	stdlog.Println(addr)
 	stdlog.Println("voting power", state.Validators.TotalVotingPower())
 	stdlog.Println("validator or not:", state.Validators.HasAddress(addr))
-	stdlog.Println("len validator", len(state.Validators.Validators))
-	stdlog.Println("len validator", state.Validators.Proposer)
-	stdlog.Println("validator address ", state.Validators.Validators[0].Address)
-	stdlog.Println("node adress:      ", addr)
+	stdlog.Println("validator", state.Validators.Validators)
+	stdlog.Println("proporer", state.Validators.Proposer)
+	stdlog.Printf("validator-address=%s", state.Validators.Validators[0].Address)
+	stdlog.Printf("node adress      =%s", addr)
 
 	// Log whether this node is a validator or an observer
 	if state.Validators.HasAddress(addr) {

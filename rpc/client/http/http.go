@@ -18,7 +18,7 @@ import (
 	jsonrpcclient "github.com/tendermint/tendermint/rpc/jsonrpc/client"
 	"github.com/tendermint/tendermint/types"
 
-	//stdlog "log"
+	stdlog "log"
 )
 
 /*
@@ -270,6 +270,7 @@ func (c *baseRPCClient) BroadcastTxSync(
 	ctx context.Context,
 	tx types.Tx,
 ) (*ctypes.ResultBroadcastTx, error) {
+	stdlog.Println("broadcast_tx_sync")
 	return c.broadcastTX(ctx, "broadcast_tx_sync", tx)
 }
 
@@ -281,6 +282,7 @@ func (c *baseRPCClient) broadcastTX(
 
 	result := new(ctypes.ResultBroadcastTx)
 	_, err := c.caller.Call(ctx, route, map[string]interface{}{"tx": tx}, result)
+
 	if err != nil {
 		return nil, err
 	}

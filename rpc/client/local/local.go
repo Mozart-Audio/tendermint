@@ -15,6 +15,8 @@ import (
 	ctypes "github.com/tendermint/tendermint/rpc/core/types"
 	rpctypes "github.com/tendermint/tendermint/rpc/jsonrpc/types"
 	"github.com/tendermint/tendermint/types"
+
+	stdlog "log"
 )
 
 /*
@@ -96,6 +98,7 @@ func (c *Local) BroadcastTxAsync(ctx context.Context, tx types.Tx) (*ctypes.Resu
 }
 
 func (c *Local) BroadcastTxSync(ctx context.Context, tx types.Tx) (*ctypes.ResultBroadcastTx, error) {
+	stdlog.Println("fff")
 	return core.BroadcastTxSync(c.ctx, tx)
 }
 

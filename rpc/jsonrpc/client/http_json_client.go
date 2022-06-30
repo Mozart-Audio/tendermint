@@ -229,7 +229,12 @@ func (c *Client) Call(
 		return nil, fmt.Errorf("failed to read response body: %w", err)
 	}
 
-	return unmarshalResponseBytes(responseBytes, id, result)
+	stdlog.Println(httpResponse)
+	a, err := unmarshalResponseBytes(responseBytes, id, result)
+
+	stdlog.Println(err)
+
+	return a, err
 }
 
 // NewRequestBatch starts a batch of requests for this client.
