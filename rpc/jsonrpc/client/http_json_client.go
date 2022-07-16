@@ -13,6 +13,8 @@ import (
 
 	tmsync "github.com/tendermint/tendermint/libs/sync"
 	types "github.com/tendermint/tendermint/rpc/jsonrpc/types"
+
+	stdlog "log"
 )
 
 const (
@@ -210,6 +212,11 @@ func (c *Client) Call(
 		httpRequest.SetBasicAuth(c.username, c.password)
 	}
 
+	stdlog.Println(httpRequest)
+	//if method == "broadcast_tx_sync" {
+	//	return nil, nil
+	//}
+
 	httpResponse, err := c.client.Do(httpRequest)
 	if err != nil {
 		return nil, fmt.Errorf("post failed: %w", err)
@@ -222,7 +229,12 @@ func (c *Client) Call(
 		return nil, fmt.Errorf("failed to read response body: %w", err)
 	}
 
-	return unmarshalResponseBytes(responseBytes, id, result)
+	stdlog.Println(httpResponse)
+	a, err := unmarshalResponseBytes(responseBytes, id, result)
+
+	stdlog.Println(err)
+
+	return a, err
 }
 
 // NewRequestBatch starts a batch of requests for this client.

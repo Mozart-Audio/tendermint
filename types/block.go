@@ -32,7 +32,7 @@ const (
 	// MaxBlockSizeBytes in size) not including it's parts except Data.
 	// This means it also excludes the overhead for individual transactions.
 	//
-	// Uvarint length of MaxBlockSizeBytes: 4 bytes
+	// Uvarint length of MaxBlockSizeBytes: 4 /Users/jin/go/pkg/mod/github.com/tendermint/tm-db@v0.6.7/types.gobytes
 	// 2 fields (2 embedded):               2 bytes
 	// Uvarint length of Data.Txs:          4 bytes
 	// Data.Txs field:                      1 byte
